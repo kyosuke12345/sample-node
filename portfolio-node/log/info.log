@@ -655,3 +655,80 @@
 {"level":"info","message":"StockController {/stock}:, RoutesResolver","timestamp":"2021-08-04T05:23:30.520Z"}
 {"level":"info","message":"Mapped {/stock, GET} route, RouterExplorer","timestamp":"2021-08-04T05:23:30.522Z"}
 {"level":"info","message":"Nest application successfully started, NestApplication","timestamp":"2021-08-04T05:23:30.530Z"}
+{"level":"info","message":"AppController {}:, RoutesResolver","timestamp":"2021-08-04T05:43:27.356Z"}
+{"level":"info","message":"Mapped {/auth/login, POST} route, RouterExplorer","timestamp":"2021-08-04T05:43:27.361Z"}
+{"level":"info","message":"Mapped {/regist, POST} route, RouterExplorer","timestamp":"2021-08-04T05:43:27.363Z"}
+{"level":"info","message":"Mapped {/login-info, GET} route, RouterExplorer","timestamp":"2021-08-04T05:43:27.364Z"}
+{"level":"info","message":"StockController {/stock}:, RoutesResolver","timestamp":"2021-08-04T05:43:27.365Z"}
+{"level":"info","message":"Mapped {/stock, GET} route, RouterExplorer","timestamp":"2021-08-04T05:43:27.367Z"}
+{"level":"info","message":"Nest application successfully started, NestApplication","timestamp":"2021-08-04T05:43:27.377Z"}
+{"level":"info","message":"AppController {}:, RoutesResolver","timestamp":"2021-08-04T05:44:28.743Z"}
+{"level":"info","message":"Mapped {/auth/login, POST} route, RouterExplorer","timestamp":"2021-08-04T05:44:28.749Z"}
+{"level":"info","message":"Mapped {/regist, POST} route, RouterExplorer","timestamp":"2021-08-04T05:44:28.751Z"}
+{"level":"info","message":"Mapped {/login-info, GET} route, RouterExplorer","timestamp":"2021-08-04T05:44:28.753Z"}
+{"level":"info","message":"StockController {/stock}:, RoutesResolver","timestamp":"2021-08-04T05:44:28.753Z"}
+{"level":"info","message":"Mapped {/stock, GET} route, RouterExplorer","timestamp":"2021-08-04T05:44:28.756Z"}
+{"level":"info","message":"Nest application successfully started, NestApplication","timestamp":"2021-08-04T05:44:28.767Z"}
+{"level":"info","message":"AppController {}:, RoutesResolver","timestamp":"2021-08-04T05:44:37.804Z"}
+{"level":"info","message":"Mapped {/auth/login, POST} route, RouterExplorer","timestamp":"2021-08-04T05:44:37.810Z"}
+{"level":"info","message":"Mapped {/regist, POST} route, RouterExplorer","timestamp":"2021-08-04T05:44:37.812Z"}
+{"level":"info","message":"Mapped {/login-info, GET} route, RouterExplorer","timestamp":"2021-08-04T05:44:37.814Z"}
+{"level":"info","message":"StockController {/stock}:, RoutesResolver","timestamp":"2021-08-04T05:44:37.815Z"}
+{"level":"info","message":"Mapped {/stock, GET} route, RouterExplorer","timestamp":"2021-08-04T05:44:37.816Z"}
+{"level":"info","message":"Nest application successfully started, NestApplication","timestamp":"2021-08-04T05:44:37.824Z"}
+{"level":"info","message":"AppController {}:, RoutesResolver","timestamp":"2021-08-04T06:13:46.585Z"}
+{"level":"info","message":"Mapped {/auth/login, POST} route, RouterExplorer","timestamp":"2021-08-04T06:13:46.590Z"}
+{"level":"info","message":"Mapped {/regist, POST} route, RouterExplorer","timestamp":"2021-08-04T06:13:46.592Z"}
+{"level":"info","message":"Mapped {/login-info, GET} route, RouterExplorer","timestamp":"2021-08-04T06:13:46.593Z"}
+{"level":"info","message":"StockController {/stock}:, RoutesResolver","timestamp":"2021-08-04T06:13:46.594Z"}
+{"level":"info","message":"Mapped {/stock, GET} route, RouterExplorer","timestamp":"2021-08-04T06:13:46.595Z"}
+{"level":"info","message":"Nest application successfully started, NestApplication","timestamp":"2021-08-04T06:13:46.606Z"}
+{"level":"info","message":"AppController {}:, RoutesResolver","timestamp":"2021-08-04T06:28:40.888Z"}
+{"level":"info","message":"Mapped {/auth/login, POST} route, RouterExplorer","timestamp":"2021-08-04T06:28:40.894Z"}
+{"level":"info","message":"Mapped {/regist, POST} route, RouterExplorer","timestamp":"2021-08-04T06:28:40.895Z"}
+{"level":"info","message":"Mapped {/login-info, GET} route, RouterExplorer","timestamp":"2021-08-04T06:28:40.897Z"}
+{"level":"info","message":"StockController {/stock}:, RoutesResolver","timestamp":"2021-08-04T06:28:40.897Z"}
+{"level":"info","message":"Mapped {/stock, GET} route, RouterExplorer","timestamp":"2021-08-04T06:28:40.899Z"}
+{"level":"info","message":"Nest application successfully started, NestApplication","timestamp":"2021-08-04T06:28:40.912Z"}
+{"level":"info","message":"AppController {}:, RoutesResolver","timestamp":"2021-08-04T06:28:45.958Z"}
+{"level":"info","message":"Mapped {/auth/login, POST} route, RouterExplorer","timestamp":"2021-08-04T06:28:45.964Z"}
+{"level":"info","message":"Mapped {/regist, POST} route, RouterExplorer","timestamp":"2021-08-04T06:28:45.965Z"}
+{"level":"info","message":"Mapped {/login-info, GET} route, RouterExplorer","timestamp":"2021-08-04T06:28:45.967Z"}
+{"level":"info","message":"StockController {/stock}:, RoutesResolver","timestamp":"2021-08-04T06:28:45.968Z"}
+{"level":"info","message":"Mapped {/stock, GET} route, RouterExplorer","timestamp":"2021-08-04T06:28:45.969Z"}
+{"level":"info","message":"Nest application successfully started, NestApplication","timestamp":"2021-08-04T06:28:45.980Z"}
+{"level":"info","message":"AppController {}:, RoutesResolver","timestamp":"2021-08-04T06:29:20.450Z"}
+{"level":"info","message":"Mapped {/auth/login, POST} route, RouterExplorer","timestamp":"2021-08-04T06:29:20.456Z"}
+{"level":"info","message":"Mapped {/regist, POST} route, RouterExplorer","timestamp":"2021-08-04T06:29:20.458Z"}
+{"level":"info","message":"Mapped {/login-info, GET} route, RouterExplorer","timestamp":"2021-08-04T06:29:20.459Z"}
+{"level":"info","message":"StockController {/stock}:, RoutesResolver","timestamp":"2021-08-04T06:29:20.459Z"}
+{"level":"info","message":"Mapped {/stock, GET} route, RouterExplorer","timestamp":"2021-08-04T06:29:20.461Z"}
+{"level":"info","message":"Nest application successfully started, NestApplication","timestamp":"2021-08-04T06:29:20.472Z"}
+{"level":"info","message":"AppController {}:, RoutesResolver","timestamp":"2021-08-04T06:29:23.028Z"}
+{"level":"info","message":"Mapped {/auth/login, POST} route, RouterExplorer","timestamp":"2021-08-04T06:29:23.034Z"}
+{"level":"info","message":"Mapped {/regist, POST} route, RouterExplorer","timestamp":"2021-08-04T06:29:23.035Z"}
+{"level":"info","message":"Mapped {/login-info, GET} route, RouterExplorer","timestamp":"2021-08-04T06:29:23.037Z"}
+{"level":"info","message":"StockController {/stock}:, RoutesResolver","timestamp":"2021-08-04T06:29:23.037Z"}
+{"level":"info","message":"Mapped {/stock, GET} route, RouterExplorer","timestamp":"2021-08-04T06:29:23.039Z"}
+{"level":"info","message":"Nest application successfully started, NestApplication","timestamp":"2021-08-04T06:29:23.049Z"}
+{"level":"info","message":"AppController {}:, RoutesResolver","timestamp":"2021-08-04T06:29:37.454Z"}
+{"level":"info","message":"Mapped {/auth/login, POST} route, RouterExplorer","timestamp":"2021-08-04T06:29:37.460Z"}
+{"level":"info","message":"Mapped {/regist, POST} route, RouterExplorer","timestamp":"2021-08-04T06:29:37.461Z"}
+{"level":"info","message":"Mapped {/login-info, GET} route, RouterExplorer","timestamp":"2021-08-04T06:29:37.463Z"}
+{"level":"info","message":"StockController {/stock}:, RoutesResolver","timestamp":"2021-08-04T06:29:37.464Z"}
+{"level":"info","message":"Mapped {/stock, GET} route, RouterExplorer","timestamp":"2021-08-04T06:29:37.465Z"}
+{"level":"info","message":"Nest application successfully started, NestApplication","timestamp":"2021-08-04T06:29:37.475Z"}
+{"level":"info","message":"AppController {}:, RoutesResolver","timestamp":"2021-08-04T06:30:18.484Z"}
+{"level":"info","message":"Mapped {/auth/login, POST} route, RouterExplorer","timestamp":"2021-08-04T06:30:18.497Z"}
+{"level":"info","message":"Mapped {/regist, POST} route, RouterExplorer","timestamp":"2021-08-04T06:30:18.500Z"}
+{"level":"info","message":"Mapped {/login-info, GET} route, RouterExplorer","timestamp":"2021-08-04T06:30:18.502Z"}
+{"level":"info","message":"StockController {/stock}:, RoutesResolver","timestamp":"2021-08-04T06:30:18.503Z"}
+{"level":"info","message":"Mapped {/stock, GET} route, RouterExplorer","timestamp":"2021-08-04T06:30:18.507Z"}
+{"level":"info","message":"Nest application successfully started, NestApplication","timestamp":"2021-08-04T06:30:18.535Z"}
+{"level":"info","message":"AppController {}:, RoutesResolver","timestamp":"2021-08-04T06:44:36.717Z"}
+{"level":"info","message":"Mapped {/auth/login, POST} route, RouterExplorer","timestamp":"2021-08-04T06:44:36.726Z"}
+{"level":"info","message":"Mapped {/regist, POST} route, RouterExplorer","timestamp":"2021-08-04T06:44:36.727Z"}
+{"level":"info","message":"Mapped {/login-info, GET} route, RouterExplorer","timestamp":"2021-08-04T06:44:36.729Z"}
+{"level":"info","message":"StockController {/stock}:, RoutesResolver","timestamp":"2021-08-04T06:44:36.730Z"}
+{"level":"info","message":"Mapped {/stock, GET} route, RouterExplorer","timestamp":"2021-08-04T06:44:36.732Z"}
+{"level":"info","message":"Nest application successfully started, NestApplication","timestamp":"2021-08-04T06:44:36.745Z"}

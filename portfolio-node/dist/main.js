@@ -123,13 +123,13 @@ const libs_1 = __webpack_require__(8);
 const db_service_1 = __webpack_require__(11);
 const common_1 = __webpack_require__(2);
 const config_1 = __webpack_require__(12);
-const typeorm_1 = __webpack_require__(16);
-const lib_log_module_1 = __webpack_require__(17);
-const app_controller_1 = __webpack_require__(18);
-const schedule_1 = __webpack_require__(20);
-const auth_module_1 = __webpack_require__(21);
-const users_module_1 = __webpack_require__(28);
-const stock_module_1 = __webpack_require__(38);
+const typeorm_1 = __webpack_require__(21);
+const lib_log_module_1 = __webpack_require__(22);
+const app_controller_1 = __webpack_require__(23);
+const schedule_1 = __webpack_require__(35);
+const auth_module_1 = __webpack_require__(36);
+const users_module_1 = __webpack_require__(37);
+const stock_module_1 = __webpack_require__(42);
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -247,8 +247,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.DbService = void 0;
 const common_1 = __webpack_require__(2);
 const config_1 = __webpack_require__(12);
-const stock_entity_1 = __webpack_require__(42);
-const user_entity_1 = __webpack_require__(13);
+const stock_entity_1 = __webpack_require__(13);
+const user_entity_1 = __webpack_require__(18);
 let DbService = class DbService {
     constructor(configService) {
         this.configService = configService;
@@ -293,11 +293,137 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var _a;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Stock = void 0;
+const common_1 = __webpack_require__(14);
+const typeguard_1 = __webpack_require__(15);
+const date_fns_1 = __webpack_require__(16);
+const typeorm_1 = __webpack_require__(17);
+let Stock = class Stock {
+    afterLoad() {
+        if (typeguard_1.isString(this.day)) {
+            this.day = date_fns_1.parse(this.day, common_1.TYPEORM_DATE_FORMAT, new Date());
+        }
+    }
+};
+__decorate([
+    typeorm_1.PrimaryColumn({ type: 'date' }),
+    __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
+], Stock.prototype, "day", void 0);
+__decorate([
+    typeorm_1.Column({ type: 'double precision', comment: '終値' }),
+    __metadata("design:type", Number)
+], Stock.prototype, "owarine", void 0);
+__decorate([
+    typeorm_1.Column({ type: 'double precision', comment: '始値' }),
+    __metadata("design:type", Number)
+], Stock.prototype, "hajimene", void 0);
+__decorate([
+    typeorm_1.Column({ type: 'double precision', comment: '高値' }),
+    __metadata("design:type", Number)
+], Stock.prototype, "takane", void 0);
+__decorate([
+    typeorm_1.Column({ type: 'double precision', comment: '安値' }),
+    __metadata("design:type", Number)
+], Stock.prototype, "yasune", void 0);
+__decorate([
+    typeorm_1.AfterLoad(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], Stock.prototype, "afterLoad", null);
+Stock = __decorate([
+    typeorm_1.Entity('stock')
+], Stock);
+exports.Stock = Stock;
+
+
+/***/ }),
+/* 14 */
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.isLocal = exports.TYPEORM_DATE_FORMAT = void 0;
+exports.TYPEORM_DATE_FORMAT = 'yyyy-MM-dd';
+function isLocal() {
+    var _a;
+    const env = (_a = process.env.NODE_ENV) !== null && _a !== void 0 ? _a : 'local';
+    if (env === 'local') {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+exports.isLocal = isLocal;
+
+
+/***/ }),
+/* 15 */
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.isBoolean = exports.isString = exports.isNumber = exports.isUndefined = exports.isNull = exports.isNullOrUndefined = void 0;
+function isNullOrUndefined(object) {
+    return object === null || object === undefined;
+}
+exports.isNullOrUndefined = isNullOrUndefined;
+function isNull(object) {
+    return object === null;
+}
+exports.isNull = isNull;
+function isUndefined(object) {
+    return object === undefined;
+}
+exports.isUndefined = isUndefined;
+function isNumber(object) {
+    return typeof object === 'number';
+}
+exports.isNumber = isNumber;
+function isString(object) {
+    return typeof object === 'string';
+}
+exports.isString = isString;
+function isBoolean(object) {
+    return typeof object === 'boolean';
+}
+exports.isBoolean = isBoolean;
+
+
+/***/ }),
+/* 16 */
+/***/ ((module) => {
+
+module.exports = require("date-fns");;
+
+/***/ }),
+/* 17 */
+/***/ ((module) => {
+
+module.exports = require("typeorm");;
+
+/***/ }),
+/* 18 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getUserInstance = exports.User = exports.MAX_LENGTH = void 0;
-const typeorm_1 = __webpack_require__(14);
-const table_abstract_1 = __webpack_require__(15);
-const bcrypt_1 = __webpack_require__(26);
+const typeorm_1 = __webpack_require__(17);
+const table_abstract_1 = __webpack_require__(19);
+const bcrypt_1 = __webpack_require__(20);
 const swagger_1 = __webpack_require__(6);
 exports.MAX_LENGTH = {
     EMAIL: 80,
@@ -335,13 +461,7 @@ exports.getUserInstance = getUserInstance;
 
 
 /***/ }),
-/* 14 */
-/***/ ((module) => {
-
-module.exports = require("typeorm");;
-
-/***/ }),
-/* 15 */
+/* 19 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -357,7 +477,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.COMMON_COLUMN_KEY_LIST = exports.CommonColumn = void 0;
-const typeorm_1 = __webpack_require__(14);
+const typeorm_1 = __webpack_require__(17);
 class CommonColumn {
 }
 __decorate([
@@ -385,13 +505,19 @@ exports.COMMON_COLUMN_KEY_LIST = Object.keys(CommonColumn).map((key) => key);
 
 
 /***/ }),
-/* 16 */
+/* 20 */
+/***/ ((module) => {
+
+module.exports = require("bcrypt");;
+
+/***/ }),
+/* 21 */
 /***/ ((module) => {
 
 module.exports = require("@nestjs/typeorm");;
 
 /***/ }),
-/* 17 */
+/* 22 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -417,7 +543,7 @@ exports.LibLogModule = LibLogModule;
 
 
 /***/ }),
-/* 18 */
+/* 23 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -438,13 +564,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AppController = void 0;
 const common_1 = __webpack_require__(2);
 const swagger_1 = __webpack_require__(6);
-const auth_service_1 = __webpack_require__(22);
-const auth_dto_1 = __webpack_require__(35);
+const auth_service_1 = __webpack_require__(24);
+const auth_dto_1 = __webpack_require__(28);
 const auth_response_1 = __webpack_require__(27);
-const jwt_auth_guard_1 = __webpack_require__(19);
+const jwt_auth_guard_1 = __webpack_require__(30);
 const local_auth_guard_1 = __webpack_require__(32);
 const users_dto_1 = __webpack_require__(33);
-const users_response_1 = __webpack_require__(41);
+const users_response_1 = __webpack_require__(34);
 let AppController = class AppController {
     constructor(authService) {
         this.authService = authService;
@@ -504,83 +630,7 @@ exports.AppController = AppController;
 
 
 /***/ }),
-/* 19 */
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.JwtAuthGuard = void 0;
-const common_1 = __webpack_require__(2);
-const passport_1 = __webpack_require__(29);
-let JwtAuthGuard = class JwtAuthGuard extends passport_1.AuthGuard('jwt') {
-};
-JwtAuthGuard = __decorate([
-    common_1.Injectable()
-], JwtAuthGuard);
-exports.JwtAuthGuard = JwtAuthGuard;
-
-
-/***/ }),
-/* 20 */
-/***/ ((module) => {
-
-module.exports = require("@nestjs/schedule");;
-
-/***/ }),
-/* 21 */
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.AuthModule = void 0;
-const common_1 = __webpack_require__(2);
-const jwt_1 = __webpack_require__(25);
-const auth_service_1 = __webpack_require__(22);
-const users_module_1 = __webpack_require__(28);
-const passport_1 = __webpack_require__(29);
-const local_strategy_1 = __webpack_require__(30);
-const config_1 = __webpack_require__(12);
-const jwt_strategy_1 = __webpack_require__(36);
-let AuthModule = class AuthModule {
-};
-AuthModule = __decorate([
-    common_1.Module({
-        imports: [
-            users_module_1.UsersModule,
-            passport_1.PassportModule,
-            jwt_1.JwtModule.registerAsync({
-                useFactory: async (configService) => {
-                    return {
-                        secret: configService.get('JWT_SECRET_KEY'),
-                        signOptions: {
-                            expiresIn: configService.get('EXPIRES_IN'),
-                        },
-                    };
-                },
-                inject: [config_1.ConfigService],
-            }),
-        ],
-        providers: [auth_service_1.AuthService, local_strategy_1.LocalStrategy, jwt_strategy_1.JwtStrategy],
-        exports: [auth_service_1.AuthService],
-    })
-], AuthModule);
-exports.AuthModule = AuthModule;
-
-
-/***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -596,11 +646,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var _a, _b;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AuthService = void 0;
-const typeguard_1 = __webpack_require__(23);
-const users_service_1 = __webpack_require__(24);
+const typeguard_1 = __webpack_require__(15);
+const users_service_1 = __webpack_require__(25);
 const common_1 = __webpack_require__(2);
-const jwt_1 = __webpack_require__(25);
-const bcrypt_1 = __webpack_require__(26);
+const jwt_1 = __webpack_require__(26);
+const bcrypt_1 = __webpack_require__(20);
 const auth_response_1 = __webpack_require__(27);
 let AuthService = class AuthService {
     constructor(userService, jwtService) {
@@ -639,40 +689,7 @@ exports.AuthService = AuthService;
 
 
 /***/ }),
-/* 23 */
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.isBoolean = exports.isString = exports.isNumber = exports.isUndefined = exports.isNull = exports.isNullOrUndefined = void 0;
-function isNullOrUndefined(object) {
-    return object === null || object === undefined;
-}
-exports.isNullOrUndefined = isNullOrUndefined;
-function isNull(object) {
-    return object === null;
-}
-exports.isNull = isNull;
-function isUndefined(object) {
-    return object === undefined;
-}
-exports.isUndefined = isUndefined;
-function isNumber(object) {
-    return typeof object === 'number';
-}
-exports.isNumber = isNumber;
-function isString(object) {
-    return typeof object === 'string';
-}
-exports.isString = isString;
-function isBoolean(object) {
-    return typeof object === 'boolean';
-}
-exports.isBoolean = isBoolean;
-
-
-/***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -691,10 +708,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UsersService = void 0;
-const user_entity_1 = __webpack_require__(13);
+const user_entity_1 = __webpack_require__(18);
 const common_1 = __webpack_require__(2);
-const typeorm_1 = __webpack_require__(16);
-const typeorm_2 = __webpack_require__(14);
+const typeorm_1 = __webpack_require__(21);
+const typeorm_2 = __webpack_require__(17);
 let UsersService = class UsersService {
     constructor(userRepository) {
         this.userRepository = userRepository;
@@ -716,16 +733,10 @@ exports.UsersService = UsersService;
 
 
 /***/ }),
-/* 25 */
-/***/ ((module) => {
-
-module.exports = require("@nestjs/jwt");;
-
-/***/ }),
 /* 26 */
 /***/ ((module) => {
 
-module.exports = require("bcrypt");;
+module.exports = require("@nestjs/jwt");;
 
 /***/ }),
 /* 27 */
@@ -743,8 +754,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UserReponse = exports.LoginResponse = exports.AuthResponse = void 0;
-const table_abstract_1 = __webpack_require__(15);
-const user_entity_1 = __webpack_require__(13);
+const table_abstract_1 = __webpack_require__(19);
+const user_entity_1 = __webpack_require__(18);
 const swagger_1 = __webpack_require__(6);
 class AuthResponse extends swagger_1.PartialType(swagger_1.OmitType(user_entity_1.User, ['password', 'id', ...table_abstract_1.COMMON_COLUMN_KEY_LIST])) {
     constructor(user) {
@@ -784,29 +795,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.UsersModule = void 0;
-const common_1 = __webpack_require__(2);
-const users_service_1 = __webpack_require__(24);
-const typeorm_1 = __webpack_require__(16);
-const user_entity_1 = __webpack_require__(13);
-let UsersModule = class UsersModule {
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-UsersModule = __decorate([
-    common_1.Module({
-        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User])],
-        providers: [users_service_1.UsersService],
-        exports: [users_service_1.UsersService],
-    })
-], UsersModule);
-exports.UsersModule = UsersModule;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.LoginDto = void 0;
+const class_validator_1 = __webpack_require__(29);
+const swagger_1 = __webpack_require__(6);
+class LoginDto {
+}
+__decorate([
+    swagger_1.ApiProperty({ type: String }),
+    class_validator_1.IsEmail(),
+    __metadata("design:type", Object)
+], LoginDto.prototype, "email", void 0);
+__decorate([
+    swagger_1.ApiProperty({ type: String }),
+    class_validator_1.IsNotEmpty(),
+    __metadata("design:type", Object)
+], LoginDto.prototype, "password", void 0);
+exports.LoginDto = LoginDto;
 
 
 /***/ }),
 /* 29 */
 /***/ ((module) => {
 
-module.exports = require("@nestjs/passport");;
+module.exports = require("class-validator");;
 
 /***/ }),
 /* 30 */
@@ -819,41 +834,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.LocalStrategy = void 0;
-const passport_local_1 = __webpack_require__(31);
-const passport_1 = __webpack_require__(29);
+exports.JwtAuthGuard = void 0;
 const common_1 = __webpack_require__(2);
-const auth_service_1 = __webpack_require__(22);
-let LocalStrategy = class LocalStrategy extends passport_1.PassportStrategy(passport_local_1.Strategy) {
-    constructor(authService) {
-        super({ usernameField: 'email' });
-        this.authService = authService;
-    }
-    async validate(email, password) {
-        const user = await this.authService.validateUser(email, password);
-        if (!user) {
-            throw new common_1.UnauthorizedException();
-        }
-        return user;
-    }
+const passport_1 = __webpack_require__(31);
+let JwtAuthGuard = class JwtAuthGuard extends passport_1.AuthGuard('jwt') {
 };
-LocalStrategy = __decorate([
-    common_1.Injectable(),
-    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" ? _a : Object])
-], LocalStrategy);
-exports.LocalStrategy = LocalStrategy;
+JwtAuthGuard = __decorate([
+    common_1.Injectable()
+], JwtAuthGuard);
+exports.JwtAuthGuard = JwtAuthGuard;
 
 
 /***/ }),
 /* 31 */
 /***/ ((module) => {
 
-module.exports = require("passport-local");;
+module.exports = require("@nestjs/passport");;
 
 /***/ }),
 /* 32 */
@@ -869,7 +866,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.LocalAuthGuard = void 0;
 const common_1 = __webpack_require__(2);
-const passport_1 = __webpack_require__(29);
+const passport_1 = __webpack_require__(31);
 let LocalAuthGuard = class LocalAuthGuard extends passport_1.AuthGuard('local') {
 };
 LocalAuthGuard = __decorate([
@@ -895,7 +892,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.CreateUserDto = void 0;
 const swagger_1 = __webpack_require__(6);
-const class_validator_1 = __webpack_require__(34);
+const class_validator_1 = __webpack_require__(29);
 class CreateUserDto {
 }
 __decorate([
@@ -913,12 +910,108 @@ exports.CreateUserDto = CreateUserDto;
 
 /***/ }),
 /* 34 */
-/***/ ((module) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-module.exports = require("class-validator");;
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UserResponse = void 0;
+const table_abstract_1 = __webpack_require__(19);
+const user_entity_1 = __webpack_require__(18);
+const swagger_1 = __webpack_require__(6);
+class UserResponse extends swagger_1.PartialType(swagger_1.OmitType(user_entity_1.User, ['password', ...table_abstract_1.COMMON_COLUMN_KEY_LIST])) {
+    constructor(user) {
+        super();
+        this.email = user.email;
+        this.id = user.id;
+    }
+}
+exports.UserResponse = UserResponse;
+
 
 /***/ }),
 /* 35 */
+/***/ ((module) => {
+
+module.exports = require("@nestjs/schedule");;
+
+/***/ }),
+/* 36 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AuthModule = void 0;
+const common_1 = __webpack_require__(2);
+const jwt_1 = __webpack_require__(26);
+const auth_service_1 = __webpack_require__(24);
+const users_module_1 = __webpack_require__(37);
+const passport_1 = __webpack_require__(31);
+const local_strategy_1 = __webpack_require__(38);
+const config_1 = __webpack_require__(12);
+const jwt_strategy_1 = __webpack_require__(40);
+let AuthModule = class AuthModule {
+};
+AuthModule = __decorate([
+    common_1.Module({
+        imports: [
+            users_module_1.UsersModule,
+            passport_1.PassportModule,
+            jwt_1.JwtModule.registerAsync({
+                useFactory: async (configService) => {
+                    return {
+                        secret: configService.get('JWT_SECRET_KEY'),
+                        signOptions: {
+                            expiresIn: configService.get('EXPIRES_IN'),
+                        },
+                    };
+                },
+                inject: [config_1.ConfigService],
+            }),
+        ],
+        providers: [auth_service_1.AuthService, local_strategy_1.LocalStrategy, jwt_strategy_1.JwtStrategy],
+        exports: [auth_service_1.AuthService],
+    })
+], AuthModule);
+exports.AuthModule = AuthModule;
+
+
+/***/ }),
+/* 37 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UsersModule = void 0;
+const common_1 = __webpack_require__(2);
+const users_service_1 = __webpack_require__(25);
+const typeorm_1 = __webpack_require__(21);
+const user_entity_1 = __webpack_require__(18);
+let UsersModule = class UsersModule {
+};
+UsersModule = __decorate([
+    common_1.Module({
+        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User])],
+        providers: [users_service_1.UsersService],
+        exports: [users_service_1.UsersService],
+    })
+], UsersModule);
+exports.UsersModule = UsersModule;
+
+
+/***/ }),
+/* 38 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -931,27 +1024,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.LoginDto = void 0;
-const class_validator_1 = __webpack_require__(34);
-const swagger_1 = __webpack_require__(6);
-class LoginDto {
-}
-__decorate([
-    swagger_1.ApiProperty({ type: String }),
-    class_validator_1.IsEmail(),
-    __metadata("design:type", Object)
-], LoginDto.prototype, "email", void 0);
-__decorate([
-    swagger_1.ApiProperty({ type: String }),
-    class_validator_1.IsNotEmpty(),
-    __metadata("design:type", Object)
-], LoginDto.prototype, "password", void 0);
-exports.LoginDto = LoginDto;
+exports.LocalStrategy = void 0;
+const passport_local_1 = __webpack_require__(39);
+const passport_1 = __webpack_require__(31);
+const common_1 = __webpack_require__(2);
+const auth_service_1 = __webpack_require__(24);
+let LocalStrategy = class LocalStrategy extends passport_1.PassportStrategy(passport_local_1.Strategy) {
+    constructor(authService) {
+        super({ usernameField: 'email' });
+        this.authService = authService;
+    }
+    async validate(email, password) {
+        const user = await this.authService.validateUser(email, password);
+        if (!user) {
+            throw new common_1.UnauthorizedException();
+        }
+        return user;
+    }
+};
+LocalStrategy = __decorate([
+    common_1.Injectable(),
+    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" ? _a : Object])
+], LocalStrategy);
+exports.LocalStrategy = LocalStrategy;
 
 
 /***/ }),
-/* 36 */
+/* 39 */
+/***/ ((module) => {
+
+module.exports = require("passport-local");;
+
+/***/ }),
+/* 40 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -967,11 +1074,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var _a, _b;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.JwtStrategy = void 0;
-const passport_jwt_1 = __webpack_require__(37);
+const passport_jwt_1 = __webpack_require__(41);
 const common_1 = __webpack_require__(2);
 const config_1 = __webpack_require__(12);
-const passport_1 = __webpack_require__(29);
-const auth_service_1 = __webpack_require__(22);
+const passport_1 = __webpack_require__(31);
+const auth_service_1 = __webpack_require__(24);
 let JwtStrategy = class JwtStrategy extends passport_1.PassportStrategy(passport_jwt_1.Strategy) {
     constructor(configService, authService) {
         super({
@@ -994,13 +1101,13 @@ exports.JwtStrategy = JwtStrategy;
 
 
 /***/ }),
-/* 37 */
+/* 41 */
 /***/ ((module) => {
 
 module.exports = require("passport-jwt");;
 
 /***/ }),
-/* 38 */
+/* 42 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -1012,11 +1119,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.StockModule = void 0;
-const stock_entity_1 = __webpack_require__(42);
+const stock_entity_1 = __webpack_require__(13);
 const common_1 = __webpack_require__(2);
-const typeorm_1 = __webpack_require__(16);
-const stock_controller_1 = __webpack_require__(39);
-const stock_service_1 = __webpack_require__(40);
+const typeorm_1 = __webpack_require__(21);
+const stock_controller_1 = __webpack_require__(43);
+const stock_service_1 = __webpack_require__(45);
 let StockModule = class StockModule {
 };
 StockModule = __decorate([
@@ -1030,7 +1137,7 @@ exports.StockModule = StockModule;
 
 
 /***/ }),
-/* 39 */
+/* 43 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -1049,11 +1156,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.StockController = void 0;
-const jwt_auth_guard_1 = __webpack_require__(19);
+const jwt_auth_guard_1 = __webpack_require__(30);
 const common_1 = __webpack_require__(2);
 const swagger_1 = __webpack_require__(6);
-const stock_response_1 = __webpack_require__(45);
-const stock_service_1 = __webpack_require__(40);
+const stock_response_1 = __webpack_require__(44);
+const stock_service_1 = __webpack_require__(45);
 let StockController = class StockController {
     constructor(stockService) {
         this.stockService = stockService;
@@ -1085,159 +1192,7 @@ exports.StockController = StockController;
 
 
 /***/ }),
-/* 40 */
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-var _a;
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.StockService = void 0;
-const stock_entity_1 = __webpack_require__(42);
-const common_1 = __webpack_require__(2);
-const typeorm_1 = __webpack_require__(16);
-const typeorm_2 = __webpack_require__(14);
-const stock_response_1 = __webpack_require__(45);
-let StockService = class StockService {
-    constructor(stockRepository) {
-        this.stockRepository = stockRepository;
-    }
-    async stockInfo() {
-        const stockList = await this.stockRepository.find({
-            order: { day: 'ASC' },
-            take: 60,
-        });
-        return new stock_response_1.StockResponse(stockList);
-    }
-};
-StockService = __decorate([
-    common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(stock_entity_1.Stock)),
-    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object])
-], StockService);
-exports.StockService = StockService;
-
-
-/***/ }),
-/* 41 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.UserResponse = void 0;
-const table_abstract_1 = __webpack_require__(15);
-const user_entity_1 = __webpack_require__(13);
-const swagger_1 = __webpack_require__(6);
-class UserResponse extends swagger_1.PartialType(swagger_1.OmitType(user_entity_1.User, ['password', ...table_abstract_1.COMMON_COLUMN_KEY_LIST])) {
-    constructor(user) {
-        super();
-        this.email = user.email;
-        this.id = user.id;
-    }
-}
-exports.UserResponse = UserResponse;
-
-
-/***/ }),
-/* 42 */
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var _a;
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Stock = void 0;
-const common_1 = __webpack_require__(43);
-const typeguard_1 = __webpack_require__(23);
-const date_fns_1 = __webpack_require__(44);
-const typeorm_1 = __webpack_require__(14);
-let Stock = class Stock {
-    afterLoad() {
-        if (typeguard_1.isString(this.day)) {
-            this.day = date_fns_1.parse(this.day, common_1.TYPEORM_DATE_FORMAT, new Date());
-        }
-    }
-};
-__decorate([
-    typeorm_1.PrimaryColumn({ type: 'date' }),
-    __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
-], Stock.prototype, "day", void 0);
-__decorate([
-    typeorm_1.Column({ type: 'double precision', comment: '終値' }),
-    __metadata("design:type", Number)
-], Stock.prototype, "owarine", void 0);
-__decorate([
-    typeorm_1.Column({ type: 'double precision', comment: '始値' }),
-    __metadata("design:type", Number)
-], Stock.prototype, "hajimene", void 0);
-__decorate([
-    typeorm_1.Column({ type: 'double precision', comment: '高値' }),
-    __metadata("design:type", Number)
-], Stock.prototype, "takane", void 0);
-__decorate([
-    typeorm_1.Column({ type: 'double precision', comment: '安値' }),
-    __metadata("design:type", Number)
-], Stock.prototype, "yasune", void 0);
-__decorate([
-    typeorm_1.AfterLoad(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], Stock.prototype, "afterLoad", null);
-Stock = __decorate([
-    typeorm_1.Entity('stock')
-], Stock);
-exports.Stock = Stock;
-
-
-/***/ }),
-/* 43 */
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.isLocal = exports.TYPEORM_DATE_FORMAT = void 0;
-exports.TYPEORM_DATE_FORMAT = 'yyyy-MM-dd';
-function isLocal() {
-    var _a;
-    const env = (_a = process.env.NODE_ENV) !== null && _a !== void 0 ? _a : 'local';
-    if (env === 'local') {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-exports.isLocal = isLocal;
-
-
-/***/ }),
 /* 44 */
-/***/ ((module) => {
-
-module.exports = require("date-fns");;
-
-/***/ }),
-/* 45 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -1296,6 +1251,51 @@ __decorate([
     __metadata("design:type", Array)
 ], StockResponse.prototype, "items", void 0);
 exports.StockResponse = StockResponse;
+
+
+/***/ }),
+/* 45 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.StockService = void 0;
+const stock_entity_1 = __webpack_require__(13);
+const common_1 = __webpack_require__(2);
+const typeorm_1 = __webpack_require__(21);
+const typeorm_2 = __webpack_require__(17);
+const stock_response_1 = __webpack_require__(44);
+let StockService = class StockService {
+    constructor(stockRepository) {
+        this.stockRepository = stockRepository;
+    }
+    async stockInfo() {
+        const stockList = await this.stockRepository.find({
+            order: { day: 'ASC' },
+            take: 60,
+        });
+        return new stock_response_1.StockResponse(stockList);
+    }
+};
+StockService = __decorate([
+    common_1.Injectable(),
+    __param(0, typeorm_1.InjectRepository(stock_entity_1.Stock)),
+    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object])
+], StockService);
+exports.StockService = StockService;
 
 
 /***/ })
