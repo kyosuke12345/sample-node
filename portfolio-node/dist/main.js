@@ -123,9 +123,9 @@ const libs_1 = __webpack_require__(8);
 const db_service_1 = __webpack_require__(11);
 const common_1 = __webpack_require__(2);
 const config_1 = __webpack_require__(12);
-const typeorm_1 = __webpack_require__(21);
-const lib_log_module_1 = __webpack_require__(22);
-const app_controller_1 = __webpack_require__(23);
+const typeorm_1 = __webpack_require__(22);
+const lib_log_module_1 = __webpack_require__(23);
+const app_controller_1 = __webpack_require__(24);
 const schedule_1 = __webpack_require__(35);
 const auth_module_1 = __webpack_require__(36);
 const users_module_1 = __webpack_require__(37);
@@ -248,7 +248,7 @@ exports.DbService = void 0;
 const common_1 = __webpack_require__(2);
 const config_1 = __webpack_require__(12);
 const stock_entity_1 = __webpack_require__(13);
-const user_entity_1 = __webpack_require__(18);
+const user_entity_1 = __webpack_require__(19);
 let DbService = class DbService {
     constructor(configService) {
         this.configService = configService;
@@ -298,8 +298,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Stock = void 0;
 const common_1 = __webpack_require__(14);
 const typeguard_1 = __webpack_require__(15);
-const date_fns_1 = __webpack_require__(16);
-const typeorm_1 = __webpack_require__(17);
+const date_fns_1 = __webpack_require__(17);
+const typeorm_1 = __webpack_require__(18);
 let Stock = class Stock {
     afterLoad() {
         if (typeguard_1.isString(this.day)) {
@@ -362,11 +362,12 @@ exports.isLocal = isLocal;
 
 /***/ }),
 /* 15 */
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.isBoolean = exports.isString = exports.isNumber = exports.isUndefined = exports.isNull = exports.isNullOrUndefined = void 0;
+exports.isArray = exports.isDate = exports.isObject = exports.isBoolean = exports.isString = exports.isNumber = exports.isUndefined = exports.isNull = exports.isNullOrUndefined = void 0;
+const class_validator_1 = __webpack_require__(16);
 function isNullOrUndefined(object) {
     return object === null || object === undefined;
 }
@@ -380,33 +381,51 @@ function isUndefined(object) {
 }
 exports.isUndefined = isUndefined;
 function isNumber(object) {
-    return typeof object === 'number';
+    return class_validator_1.isNumber(object);
 }
 exports.isNumber = isNumber;
 function isString(object) {
-    return typeof object === 'string';
+    return class_validator_1.isString(object);
 }
 exports.isString = isString;
 function isBoolean(object) {
     return typeof object === 'boolean';
 }
 exports.isBoolean = isBoolean;
+function isObject(object) {
+    return class_validator_1.isObject(object);
+}
+exports.isObject = isObject;
+function isDate(object) {
+    return class_validator_1.isDate(object);
+}
+exports.isDate = isDate;
+function isArray(object, isFunc) {
+    return Array.isArray(object) && object.every((element) => isFunc(element));
+}
+exports.isArray = isArray;
 
 
 /***/ }),
 /* 16 */
 /***/ ((module) => {
 
-module.exports = require("date-fns");;
+module.exports = require("class-validator");;
 
 /***/ }),
 /* 17 */
 /***/ ((module) => {
 
-module.exports = require("typeorm");;
+module.exports = require("date-fns");;
 
 /***/ }),
 /* 18 */
+/***/ ((module) => {
+
+module.exports = require("typeorm");;
+
+/***/ }),
+/* 19 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -421,9 +440,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getUserInstance = exports.User = exports.MAX_LENGTH = void 0;
-const typeorm_1 = __webpack_require__(17);
-const table_abstract_1 = __webpack_require__(19);
-const bcrypt_1 = __webpack_require__(20);
+const typeorm_1 = __webpack_require__(18);
+const table_abstract_1 = __webpack_require__(20);
+const bcrypt_1 = __webpack_require__(21);
 const swagger_1 = __webpack_require__(6);
 exports.MAX_LENGTH = {
     EMAIL: 80,
@@ -461,7 +480,7 @@ exports.getUserInstance = getUserInstance;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -477,7 +496,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.COMMON_COLUMN_KEY_LIST = exports.CommonColumn = void 0;
-const typeorm_1 = __webpack_require__(17);
+const typeorm_1 = __webpack_require__(18);
 class CommonColumn {
 }
 __decorate([
@@ -505,19 +524,19 @@ exports.COMMON_COLUMN_KEY_LIST = Object.keys(CommonColumn).map((key) => key);
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ ((module) => {
 
 module.exports = require("bcrypt");;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ ((module) => {
 
 module.exports = require("@nestjs/typeorm");;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -543,7 +562,7 @@ exports.LibLogModule = LibLogModule;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -564,9 +583,9 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AppController = void 0;
 const common_1 = __webpack_require__(2);
 const swagger_1 = __webpack_require__(6);
-const auth_service_1 = __webpack_require__(24);
-const auth_dto_1 = __webpack_require__(28);
-const auth_response_1 = __webpack_require__(27);
+const auth_service_1 = __webpack_require__(25);
+const auth_dto_1 = __webpack_require__(29);
+const auth_response_1 = __webpack_require__(28);
 const jwt_auth_guard_1 = __webpack_require__(30);
 const local_auth_guard_1 = __webpack_require__(32);
 const users_dto_1 = __webpack_require__(33);
@@ -630,7 +649,7 @@ exports.AppController = AppController;
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -647,11 +666,11 @@ var _a, _b;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AuthService = void 0;
 const typeguard_1 = __webpack_require__(15);
-const users_service_1 = __webpack_require__(25);
+const users_service_1 = __webpack_require__(26);
 const common_1 = __webpack_require__(2);
-const jwt_1 = __webpack_require__(26);
-const bcrypt_1 = __webpack_require__(20);
-const auth_response_1 = __webpack_require__(27);
+const jwt_1 = __webpack_require__(27);
+const bcrypt_1 = __webpack_require__(21);
+const auth_response_1 = __webpack_require__(28);
 let AuthService = class AuthService {
     constructor(userService, jwtService) {
         this.userService = userService;
@@ -689,7 +708,7 @@ exports.AuthService = AuthService;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -708,10 +727,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UsersService = void 0;
-const user_entity_1 = __webpack_require__(18);
+const user_entity_1 = __webpack_require__(19);
 const common_1 = __webpack_require__(2);
-const typeorm_1 = __webpack_require__(21);
-const typeorm_2 = __webpack_require__(17);
+const typeorm_1 = __webpack_require__(22);
+const typeorm_2 = __webpack_require__(18);
 let UsersService = class UsersService {
     constructor(userRepository) {
         this.userRepository = userRepository;
@@ -733,13 +752,13 @@ exports.UsersService = UsersService;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ ((module) => {
 
 module.exports = require("@nestjs/jwt");;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -754,8 +773,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UserReponse = exports.LoginResponse = exports.AuthResponse = void 0;
-const table_abstract_1 = __webpack_require__(19);
-const user_entity_1 = __webpack_require__(18);
+const table_abstract_1 = __webpack_require__(20);
+const user_entity_1 = __webpack_require__(19);
 const swagger_1 = __webpack_require__(6);
 class AuthResponse extends swagger_1.PartialType(swagger_1.OmitType(user_entity_1.User, ['password', 'id', ...table_abstract_1.COMMON_COLUMN_KEY_LIST])) {
     constructor(user) {
@@ -785,7 +804,7 @@ exports.UserReponse = UserReponse;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -800,7 +819,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.LoginDto = void 0;
-const class_validator_1 = __webpack_require__(29);
+const class_validator_1 = __webpack_require__(16);
 const swagger_1 = __webpack_require__(6);
 class LoginDto {
 }
@@ -816,12 +835,6 @@ __decorate([
 ], LoginDto.prototype, "password", void 0);
 exports.LoginDto = LoginDto;
 
-
-/***/ }),
-/* 29 */
-/***/ ((module) => {
-
-module.exports = require("class-validator");;
 
 /***/ }),
 /* 30 */
@@ -892,7 +905,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.CreateUserDto = void 0;
 const swagger_1 = __webpack_require__(6);
-const class_validator_1 = __webpack_require__(29);
+const class_validator_1 = __webpack_require__(16);
 class CreateUserDto {
 }
 __decorate([
@@ -915,8 +928,8 @@ exports.CreateUserDto = CreateUserDto;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UserResponse = void 0;
-const table_abstract_1 = __webpack_require__(19);
-const user_entity_1 = __webpack_require__(18);
+const table_abstract_1 = __webpack_require__(20);
+const user_entity_1 = __webpack_require__(19);
 const swagger_1 = __webpack_require__(6);
 class UserResponse extends swagger_1.PartialType(swagger_1.OmitType(user_entity_1.User, ['password', ...table_abstract_1.COMMON_COLUMN_KEY_LIST])) {
     constructor(user) {
@@ -948,8 +961,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AuthModule = void 0;
 const common_1 = __webpack_require__(2);
-const jwt_1 = __webpack_require__(26);
-const auth_service_1 = __webpack_require__(24);
+const jwt_1 = __webpack_require__(27);
+const auth_service_1 = __webpack_require__(25);
 const users_module_1 = __webpack_require__(37);
 const passport_1 = __webpack_require__(31);
 const local_strategy_1 = __webpack_require__(38);
@@ -995,9 +1008,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UsersModule = void 0;
 const common_1 = __webpack_require__(2);
-const users_service_1 = __webpack_require__(25);
-const typeorm_1 = __webpack_require__(21);
-const user_entity_1 = __webpack_require__(18);
+const users_service_1 = __webpack_require__(26);
+const typeorm_1 = __webpack_require__(22);
+const user_entity_1 = __webpack_require__(19);
 let UsersModule = class UsersModule {
 };
 UsersModule = __decorate([
@@ -1030,7 +1043,7 @@ exports.LocalStrategy = void 0;
 const passport_local_1 = __webpack_require__(39);
 const passport_1 = __webpack_require__(31);
 const common_1 = __webpack_require__(2);
-const auth_service_1 = __webpack_require__(24);
+const auth_service_1 = __webpack_require__(25);
 let LocalStrategy = class LocalStrategy extends passport_1.PassportStrategy(passport_local_1.Strategy) {
     constructor(authService) {
         super({ usernameField: 'email' });
@@ -1078,7 +1091,7 @@ const passport_jwt_1 = __webpack_require__(41);
 const common_1 = __webpack_require__(2);
 const config_1 = __webpack_require__(12);
 const passport_1 = __webpack_require__(31);
-const auth_service_1 = __webpack_require__(24);
+const auth_service_1 = __webpack_require__(25);
 let JwtStrategy = class JwtStrategy extends passport_1.PassportStrategy(passport_jwt_1.Strategy) {
     constructor(configService, authService) {
         super({
@@ -1121,7 +1134,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.StockModule = void 0;
 const stock_entity_1 = __webpack_require__(13);
 const common_1 = __webpack_require__(2);
-const typeorm_1 = __webpack_require__(21);
+const typeorm_1 = __webpack_require__(22);
 const stock_controller_1 = __webpack_require__(43);
 const stock_service_1 = __webpack_require__(45);
 let StockModule = class StockModule {
@@ -1206,7 +1219,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.StockResponse = exports.StockItem = void 0;
+exports.isStockResponse = exports.StockResponse = exports.isStockItem = exports.StockItem = void 0;
+const typeguard_1 = __webpack_require__(15);
 const swagger_1 = __webpack_require__(6);
 class StockItem {
     constructor(stock) {
@@ -1238,6 +1252,15 @@ __decorate([
     __metadata("design:type", Object)
 ], StockItem.prototype, "yasune", void 0);
 exports.StockItem = StockItem;
+function isStockItem(obj) {
+    return (typeguard_1.isObject(obj) &&
+        typeguard_1.isDate(obj.day) &&
+        typeguard_1.isNumber(obj.takane) &&
+        typeguard_1.isNumber(obj.yasune) &&
+        typeguard_1.isNumber(obj.owarine) &&
+        typeguard_1.isNumber(obj.hajimene));
+}
+exports.isStockItem = isStockItem;
 class StockResponse {
     constructor(stockList) {
         this.items = [];
@@ -1251,6 +1274,10 @@ __decorate([
     __metadata("design:type", Array)
 ], StockResponse.prototype, "items", void 0);
 exports.StockResponse = StockResponse;
+function isStockResponse(obj) {
+    return typeguard_1.isObject(obj) && typeguard_1.isArray(obj.items, isStockItem);
+}
+exports.isStockResponse = isStockResponse;
 
 
 /***/ }),
@@ -1275,8 +1302,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.StockService = void 0;
 const stock_entity_1 = __webpack_require__(13);
 const common_1 = __webpack_require__(2);
-const typeorm_1 = __webpack_require__(21);
-const typeorm_2 = __webpack_require__(17);
+const typeorm_1 = __webpack_require__(22);
+const typeorm_2 = __webpack_require__(18);
 const stock_response_1 = __webpack_require__(44);
 let StockService = class StockService {
     constructor(stockRepository) {
